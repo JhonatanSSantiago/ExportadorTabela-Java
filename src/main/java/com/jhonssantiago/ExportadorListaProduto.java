@@ -27,7 +27,7 @@ public interface ExportadorListaProduto {
     String exportar(List<Produto> listaProdutos);
 
     static ExportadorListaProduto newInstance(){
-        return new ExportadorListaProdutoMarkdown();
+        return new ExportadorListaProdutoCSV();
     };
 
     static ExportadorListaProduto newInstance(String extensaoArquivoExportacao){
@@ -35,6 +35,8 @@ public interface ExportadorListaProduto {
             return new ExportadorListaProdutoHtml();
         }if(extensaoArquivoExportacao.toLowerCase().contains(".md")){
             return new ExportadorListaProdutoHtml();
+        }if(extensaoArquivoExportacao.toLowerCase().contains(".csv")){
+            return new ExportadorListaProdutoCSV();
         }
         throw new UnsupportedOperationException("Arquivo "+extensaoArquivoExportacao+" não suportado");
     };
